@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+
+<div class="container">
+    <br><br>
+    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-5 mx-auto" style="font-weight: bold; width: 600px;">Facial Analysis by Image</h1>
+    <br>
+    <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto" style=" width: 800px; font-size: x-large;" style=" width: 700px; font-weight: 500;">
+        1. Upload an image (.jpg, .jpeg, .png).  <br>
+        2. The model will predict the biological gender as well as emotion based on the detected face in the image. <br>
+        3. The following will be displayed: detected faces, eigen faces, predicted values, and confidence scores. <br>
+    </p>
+    <br><br>
+    <form action="#" method="POST" enctype="multipart/form-data" for="formFileLg" class="mx-auto" style="width: 800px">
+        <div class="input-group">
+            <input type="file" class="form-control form-control-lg" name="image_name" style="font-weight:bold; font-size: large;" required>
+            <input type="submit" value="Upload & Predict" class="btn btn-outline-primary" style="font-weight:bold; font-size: large;">
+
+        </div>
+    </form>
+    <br><br><br>
+    <div class="">
+        <!-- <p class="fs-4 mx-auto" style="width: 1000px; font-weight: 500;">Instructions</p> <br> -->
+        <!-- <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto fs-5" style=" width: 700px; font-weight: 500;">
+            Upload an image (.jpg, .jpeg, .png).  <br>
+            The model will predict the biological gender as well as emotion based on the detected face in the image. <br>
+            The following will be displayed: detected faces, eigen faces, predicted values, and confidence scores. <br>
+        </p> -->
+        <div class="col-8 mx-auto" style="width: 1100px">
+            {% if fileupload %}
+            <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-6 mx-auto" style="font-weight: bold; width: 350px;">Predicted Image</h1>
+            <br><br>
+            <img src="/static/prediction/prediction_image.jpg" width="900" class="image-fluid mx-auto" alt="" style="width: 1100px;">
+            <br><br>
+            <hr>
+            <br>
+            <table class="table table-hover table-primary table-striped"  style="width:1100px">
+                <tr>
+                    <th>Faces Detected</th>
+                    <th>Eigen Image</th>
+                    <th>Predicted Biological Gender</th>
+                    <th>Gender Score</th>
+                    <th>Predicted Emotion</th>
+                    <th>Emotion Score</th>
+                </tr>
+                {% for i in report %}
+                    <tr>
+                        <td>
+                            <img src="/static/prediction/{{ i[0] }}" class="image-fluid" height="100" alt="">
+                        </td>
+                        <td>
+                            <img src="/static/prediction/{{ i[1] }}" class="image-fluid" height="100" alt="">
+                        </td>
+                        <td>
+                            {{ i[2] }}
+                        </td>
+                        <td>
+                            {{ i[3] }}
+                        </td>
+                        <td>
+                            {{ i[4] }}
+                        </td>
+                        <td>
+                            {{ i[5] }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+            <br><br><br>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

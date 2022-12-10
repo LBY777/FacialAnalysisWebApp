@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+
+<div class="container">
+    <br><br>
+
+    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-5 mx-auto" style="font-weight: bold; width: 600px;">Facial Analysis by Video</h1>
+    <br>
+    <div class="">
+        <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto" style=" width: 800px; font-size: x-large;" style=" width: 700px; font-weight: 500;">
+            1. Upload a video in .mp4 format. <br>
+            2. The model will predict the biological gender as well as emotion based on the detected face in the video. <br>
+            3. Please wait for a while for the output to come out. <br>
+            4. An output of image instead of a video means that the predicted video cannot be displayed for some reason, such as the browser. <br>
+        </p>
+        <br><br>
+        
+        <form action="#" method="POST" enctype="multipart/form-data" for="formFileLg" class="mx-auto" style="width: 800px">
+            <div class="input-group">
+                <input type="file" class="form-control form-control-lg" name="video_name" style="font-weight:bold; font-size: large;" required>
+                <input type="submit" value="Upload & Predict" class="btn btn-outline-primary" style="font-weight:bold; font-size: large;">
+            </div>
+        </form>
+        <br><br><br><br>
+
+    </div>
+    
+    <div class="container">
+        
+
+        {% if fileupload %}
+        <!-- <br><br>
+        <h3 class="display-8">Predicted Video</h3>
+        <video width="320" height="240" controls>
+            <source src="./static/prediction/video_pred.mp4" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>
+        <hr>
+        <br> -->
+
+        
+        <center>
+            <video loop autoplay muted width="1100" poster="/static/images/poster.png">
+                <!-- <source src="/static/prediction/video_pred.avi" type="video/avi"> -->
+                <source src="/static/prediction/video_pred.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </center>
+        
+        {% endif %}
+    </div> 
+</div>
+
+
+
+
+
+
+{% endblock %}
