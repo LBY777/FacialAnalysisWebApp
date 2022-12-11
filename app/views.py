@@ -4,8 +4,6 @@ from flask import render_template, request, Response
 from app.emotion_gender_recognition import pipeline
 import matplotlib.image as matimg
 # from app import emotion_gender_recognition
-
-
 upload_folder = 'static/upload'
 
 def index():
