@@ -88,7 +88,7 @@ def video():
         cap = cv2.VideoCapture(path)
         frame_width = int(cap.get(3))
         frame_height = int(cap.get(4))
-        out = cv2.VideoWriter('./static/prediction/video_pred.mp4',cv2.VideoWriter_fourcc(*'mpv4'), 10, (frame_width,frame_height))
+        out = cv2.VideoWriter('./static/prediction/video_pred.mp4',cv2.VideoWriter_fourcc(*'mp4v'), 10, (frame_width,frame_height))
         
         while(True):
             ret, frame = cap.read()
