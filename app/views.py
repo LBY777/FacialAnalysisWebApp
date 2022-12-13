@@ -3,9 +3,12 @@ import cv2
 from flask import render_template, request, Response
 from app.emotion_gender_recognition import pipeline
 import matplotlib.image as matimg
-# from app import emotion_gender_recognition
-upload_folder = 'static/upload'
 
+from imutils.video import VideoStream
+import datetime
+outputFrame = None
+
+upload_folder = 'static/upload'
 def index():
     return render_template('index.html')
 
@@ -57,18 +60,27 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def gen_frames():
-    cam = cv2.VideoCapture(0)
+    # cam = cv2.VideoCapture(0)
+    vs = VideoStream(src=0).start()
     while True:
-        success, frame = cam.read()  # read the camera frame
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
-            frame = buffer.tobytes()
-            # pred_img = cv2.imencode('.jpg', pipeline(frame)[0])[1].tobytes()
+        # success, frame = cam.read()  # read the camera frame
+        frame = vs.read()
+        # if not success:
+        # if frame == None:
+        #     break
+        # else:
+        #     ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
+        #     frame = buffer.tobytes()
+        #     # pred_img = cv2.imencode('.jpg', pipeline(frame)[0])[1].tobytes()
         
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        #     yield (b'--frame\r\n'
+        #            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
+        frame = buffer.tobytes()
+        if ret:
+            break
+        yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 def camera():
