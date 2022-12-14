@@ -2,7 +2,7 @@ from flask import Flask
 from app import views
 from app.views import *
 from flask_socketio import SocketIO, emit
-# import eventlet
+import eventlet
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins='*',logger=True)
 app.add_url_rule(rule='/', endpoint='home', view_func=views.index)
@@ -25,7 +25,7 @@ app.add_url_rule(rule='/about/', endpoint='about', view_func=views.about)
 
 @socketio.on('image')
 def image(data_image):
-    # eventlet.sleep(0.07)
+    eventlet.sleep(0.2)
     frame = (readb64(data_image))
 
     imgencode = cv2.imencode('.jpeg', frame,[cv2.IMWRITE_JPEG_QUALITY,3])[1]
