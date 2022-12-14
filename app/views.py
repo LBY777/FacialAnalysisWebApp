@@ -1,13 +1,19 @@
 import os
 import cv2
-from flask import render_template, request, Response
+from flask import render_template, request
 from app.emotion_gender_recognition import pipeline
 import matplotlib.image as matimg
-# from app import emotion_gender_recognition
+
+from PIL import Image
+import io
+import base64
+import numpy as np
+
 upload_folder = 'static/upload'
 
 def index():
     return render_template('index.html')
+
 
 def code_gender():
     return render_template('code_gender.html')
@@ -21,7 +27,7 @@ def code_emotion():
 def app():
     return render_template('app.html')
 
-def image():
+def image_pred():
     if request.method == 'POST':
         f = request.files['image_name']
         name = f.filename
@@ -53,22 +59,22 @@ def image():
     return render_template('image.html')
 
 
-def video_feed():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+# def video_feed():
+#     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-def gen_frames():
-    cam = cv2.VideoCapture(0)
-    while True:
-        success, frame = cam.read()  # read the camera frame
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
-            frame = buffer.tobytes()
-            # pred_img = cv2.imencode('.jpg', pipeline(frame)[0])[1].tobytes()
+# def gen_frames():
+#     cam = cv2.VideoCapture(0)
+#     while True:
+#         success, frame = cam.read()  # read the camera frame
+#         if not success:
+#             break
+#         else:
+#             ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
+#             frame = buffer.tobytes()
+#             # pred_img = cv2.imencode('.jpg', pipeline(frame)[0])[1].tobytes()
         
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+#             yield (b'--frame\r\n'
+#                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 def camera():
@@ -105,3 +111,20 @@ def video():
             
 
     return render_template('video.html')
+
+
+def readb64(base64_string):
+
+    idx = base64_string.find('base64,')
+    base64_string  = base64_string[idx+7:]
+
+    sbuf = io.BytesIO()
+
+    sbuf.write(base64.b64decode(base64_string, ' /'))
+    pimg = Image.open(sbuf)
+
+
+    return pipeline(cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR))[0]
+
+def popup():
+    return render_template('popup.html')
