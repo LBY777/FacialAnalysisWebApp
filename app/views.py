@@ -122,9 +122,8 @@ def readb64(base64_string):
 
     sbuf.write(base64.b64decode(base64_string, ' /'))
     pimg = Image.open(sbuf)
-
-
-    return pipeline(cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR))[0]
+    out = pipeline(cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR))[0]
+    return cv2.cvtColor(out, cv2.COLOR_BGR2GRAY)
 
 def popup():
     return render_template('popup.html')

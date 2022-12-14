@@ -28,7 +28,7 @@ def image(data_image):
     # eventlet.sleep(0.07)
     frame = (readb64(data_image))
 
-    imgencode = cv2.imencode('.jpeg', frame,[cv2.IMWRITE_JPEG_QUALITY,40])[1]
+    imgencode = cv2.imencode('.jpeg', frame,[cv2.IMWRITE_JPEG_QUALITY,3])[1]
 
     # base64 encode
     stringData = base64.b64encode(imgencode).decode('utf-8')
