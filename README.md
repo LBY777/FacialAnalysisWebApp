@@ -85,8 +85,6 @@ The process is similarly for both model. Generally, here are the steps:
 4\. Train the candidate models on the training set produced by PCA, with hyperparameter tuned by Grid Search.  
 5\. Model evaluation and selection.  
 6\. Form a pipeline with all the steps above that can be used on both image and video input.  
-  
-Code that generate both models can be found in the Jupyter Notebooks linked in the **Code dropdown button at the top**. All codes related to this project can be found in the GiuHub Repository, which can be accessed through the **"about"** page at the top.
 
   
   
