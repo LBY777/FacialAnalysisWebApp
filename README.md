@@ -1,11 +1,25 @@
 Facial Analysis
 ===============
 
-The web app is driven by data and machine learning model, aimed to predict biological gender and emotion associated with the faces in the given input. To deploy the model, please use the **Facial Analysis dropdown button on the top right**, where 3 types of input are accepted: Image, Camera, and Video. **Though the webapp can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.**
+**The web app is driven by data and machine learning model, aimed to predict users' biological gender and emotion in real-time based on facial characteristics.**
 
   
 
 [![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
+
+
+
+
+
+* * *
+
+  
+  
+
+Download the app
+====
+
+Though the webapp can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.
   
   
   
