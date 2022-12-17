@@ -79,4 +79,3 @@ Code that generate both models can be found in the Jupyter Notebooks linked in t
   
 
 * * *
-s
