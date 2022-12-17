@@ -1,4 +1,4 @@
-Facial Analysis
+Facial Analysis Web App
 ===============
 
 **The web app is driven by data and machine learning model, aimed to predict users' biological gender and emotion in real-time based on facial characteristics.**
