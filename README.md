@@ -1,52 +1,72 @@
-<div class="container">
-    <br><br>
-    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2 mx-auto" style="font-weight: bold; width: 500px;">Facial Analysis</h1>
-    <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto" style=" width: 730px; font-size: x-large;">
-        The web app is driven by data and machine learning model, aimed to predict biological gender and emotion associated with the faces in the given input.
-        To deploy the model, please use the <b style="font-weight: 400; color: dodgerblue;">Facial Analysis dropdown button on the top right</b>, where 3 types of input are accepted: Image, Camera, and Video.
-        <b style="font-weight: 600;">It is recommended to directly download the app from <a href="https://github.com/LBY777/FacialAnalysisWebApp/tree/Heroku">GitHub</a> for better experience on Video and Camera features.</b>
-    </p>
-    <br><br>
-    <center>
-        <video loop="True" autoplay="True" muted="True" preload="auto" width="1100" poster="/static/images/poster.png">
-            <source src="/static/images/home.mp4" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-            Your browser does not support the video tag.
-        </video>
-    </center>
-    
-    
-    <br><br><br><br><hr><br><br>
-    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-4 mx-auto" style="font-weight: bold; width: 200px;">Data</h1>
-    <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto" style=" width: 900px; font-size: x-large;">
-        The data that gender model trains on is from <a href="https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/">IMDB-WIKI</a>, from which
-        13809 faces of male and female form the training and test sets. The data that emotion model trains on is a modified version of 
-        <a href="http://mohammadmahoor.com/affectnet/">AffectNet</a> dataset from <a href="https://www.kaggle.com/datasets/tom99763/affectnethq?select=anger">Kaggle</a>,
-        from which 9000 faces belonging to 5 emotional states (happy, anger, surprise, sad, neutral) forms the training and test sets.
-    </p>
-    <br><br><br><br><hr><br><br>
-    <h2 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-4 mx-auto" style="font-weight: bold; width: 200px;">Model</h2>
-    <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto" style=" width: 900px; font-size: x-large;">
-        The gender prediction uses Support Vector Machine model, which reaches 83.9% accuracy and 83.8% AUC on the test set, 
-        outperforming the other candidate models -- Random Forest and Logistic Regression. The emotion prediction uses a Voting Classifier that 
-        combines Support Vector Machine, Random Forest Classifier, Logistic Regression and K Neighber Classifier, and reaches 51.9% accuracy on the test set. 
-        Principle Component Analysis is used on both prediction tasks. 
-    </p>
-    <br><br><br><br><hr><br><br>
-    <h3 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-4 mx-auto" style="font-weight: bold; width: 300px;">What I did</h2><br>
+Facial Analysis
+===============
 
-    <p class="mbr-text pb-3 mbr-semibold mbr-fonts-style display-7 mx-auto" style=" width: 900px; font-size: x-large;">
-        The process is similarly for both model. Generally, here are the steps: <br><br>
-        1. Detect and crop out the faces in images using open-cv <a href="https://github.com/opencv/opencv/tree/master/data/haarcascades">haarcascades</a> face detector. <br>
-        2. Resize the images containing cropped faces into 100 x 100 format. Flatten and normalize them. <br>
-        3. Perform PCA, taking the 50 Principle Components, which cover over 80% of the explained variance. <br>
-        4. Train the candidate models on the training set produced by PCA, with hyperparameter tuned by Grid Search. <br>
-        5. Model evaluation and selection. <br>
-        6. Form a pipeline with all the steps above that can be used on both image and video input. <br><br>
-        Code that generate both models can be found in the Jupyter Notebooks linked in the <b style="font-weight: bold;">Code dropdown button at the top</b>. All codes related to this project can be found
-        in the GiuHub Repository, which can be accessed through the <b style="font-weight: bold;">"about"</b> page at the top.
-    </p>
-    <br><br>
-</div>
-<br><br><hr><br><br><br><br><br><br><br>
-{% endblock %}
+The web app is driven by data and machine learning model, aimed to predict biological gender and emotion associated with the faces in the given input. To deploy the model, please use the **Facial Analysis dropdown button on the top right**, where 3 types of input are accepted: Image, Camera, and Video. **Though the webapp can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.**
+
+  
+
+  
+  
+  
+  
+
+* * *
+
+  
+  
+
+Data
+====
+
+The data that gender model trains on is from [IMDB-WIKI](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/), from which 13809 faces of male and female form the training and test sets. The data that emotion model trains on is a modified version of [AffectNet](http://mohammadmahoor.com/affectnet/) dataset from [Kaggle](https://www.kaggle.com/datasets/tom99763/affectnethq?select=anger), from which 9000 faces belonging to 5 emotional states (happy, anger, surprise, sad, neutral) forms the training and test sets.
+
+  
+  
+  
+  
+
+* * *
+
+  
+  
+
+Model
+====
+
+The gender prediction uses Support Vector Machine model, which reaches 83.9% accuracy and 83.8% AUC on the test set, outperforming the other candidate models -- Random Forest and Logistic Regression. The emotion prediction uses a Voting Classifier that combines Support Vector Machine, Random Forest Classifier, Logistic Regression and K Neighber Classifier, and reaches 51.9% accuracy on the test set. Principle Component Analysis is used on both prediction tasks.
+
+  
+  
+  
+  
+
+* * *
+
+  
+  
+
+What I did
+===
+
+
+  
+
+The process is similarly for both model. Generally, here are the steps:  
+  
+1\. Detect and crop out the faces in images using open-cv [haarcascades](https://github.com/opencv/opencv/tree/master/data/haarcascades) face detector.  
+2\. Resize the images containing cropped faces into 100 x 100 format. Flatten and normalize them.  
+3\. Perform PCA, taking the 50 Principle Components, which cover over 80% of the explained variance.  
+4\. Train the candidate models on the training set produced by PCA, with hyperparameter tuned by Grid Search.  
+5\. Model evaluation and selection.  
+6\. Form a pipeline with all the steps above that can be used on both image and video input.  
+  
+Code that generate both models can be found in the Jupyter Notebooks linked in the **Code dropdown button at the top**. All codes related to this project can be found in the GiuHub Repository, which can be accessed through the **"about"** page at the top.
+
+  
+  
+
+  
+  
+
+* * *
+
