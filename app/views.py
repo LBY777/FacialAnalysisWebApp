@@ -1,7 +1,7 @@
 import os
 import cv2
-from flask import render_template, request
-from app.emotion_gender_recognition import pipeline
+from flask import render_template, request, Response
+from app.pipeline import pipeline
 import matplotlib.image as matimg
 
 from PIL import Image
@@ -59,22 +59,22 @@ def image_pred():
     return render_template('image.html')
 
 
-# def video_feed():
-#     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+def video_feed():
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-# def gen_frames():
-#     cam = cv2.VideoCapture(0)
-#     while True:
-#         success, frame = cam.read()  # read the camera frame
-#         if not success:
-#             break
-#         else:
-#             ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
-#             frame = buffer.tobytes()
-#             # pred_img = cv2.imencode('.jpg', pipeline(frame)[0])[1].tobytes()
+def gen_frames():
+    cam = cv2.VideoCapture(0)
+    while True:
+        success, frame = cam.read()  # read the camera frame
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', pipeline(frame)[0])
+            frame = buffer.tobytes()
+            # pred_img = cv2.imencode('.jpg', pipeline(frame)[0])[1].tobytes()
         
-#             yield (b'--frame\r\n'
-#                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 def camera():
@@ -123,7 +123,7 @@ def readb64(base64_string):
     sbuf.write(base64.b64decode(base64_string, ' /'))
     pimg = Image.open(sbuf)
     out = pipeline(cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR))[0]
-    return cv2.cvtColor(out, cv2.COLOR_BGR2GRAY)
+    return out
 
 def popup():
     return render_template('popup.html')

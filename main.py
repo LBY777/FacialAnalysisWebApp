@@ -2,11 +2,12 @@ from flask import Flask
 from app import views
 from app.views import *
 from flask_socketio import SocketIO, emit
-import eventlet
+# import eventlet
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins='*',logger=True)
+socketio = SocketIO(app, cors_allowed_origins='*')
+# socketio = SocketIO(app, cors_allowed_origins='*',logger=True)
 app.add_url_rule(rule='/', endpoint='home', view_func=views.index)
-# app.add_url_rule(rule='/webcam/', endpoint='webcam', view_func=views.webcam)
+app.add_url_rule(rule='/localcam/', endpoint='localcam', view_func=views.video_feed)
 app.add_url_rule(rule='/app/', endpoint='app', view_func=views.app)
 app.add_url_rule(rule='/app/image/', endpoint='image', 
                                 view_func=views.image_pred, 
@@ -25,10 +26,9 @@ app.add_url_rule(rule='/about/', endpoint='about', view_func=views.about)
 
 @socketio.on('image')
 def image(data_image):
-    eventlet.sleep(0.2)
     frame = (readb64(data_image))
-
-    imgencode = cv2.imencode('.jpeg', frame,[cv2.IMWRITE_JPEG_QUALITY,3])[1]
+    # eventlet.sleep(0.01)
+    imgencode = cv2.imencode('.jpeg', frame,[cv2.IMWRITE_JPEG_QUALITY,80])[1]
 
     # base64 encode
     stringData = base64.b64encode(imgencode).decode('utf-8')

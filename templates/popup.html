@@ -31,10 +31,14 @@
  
  <body>
  
-     <div id="container">
+     <div id="container" class="container mx-auto" style="width:1000px" >
+        <br><br>
+        <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-5 mx-auto" style="font-weight: bold; width: 200px;">Prediction</h1>
         <div class = 'video'>
             <img id="photo"  width="1000"  height="700">
         </div>
+        <br>
+        <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-5 mx-auto" style="font-weight: bold; width: 200px;">Original</h1>
      <video autoplay playsinline id="videoElement"></video>
      <canvas id="canvas"  width="1000" height="700"></canvas>
      </div>
@@ -67,12 +71,12 @@
              });
          }
  
-         const FPS = 3;
+         const FPS = 15;
          setInterval(() => {
              width=video.width;
              height=video.height;
              context.drawImage(video, 0, 0, width , height );
-             var data = canvas.toDataURL('image/jpeg', 0.05);
+             var data = canvas.toDataURL('image/jpeg', 0.8);
              context.clearRect(0, 0, width,height );
              socket.emit('image', data);
          }, 1000/FPS);
