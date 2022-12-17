@@ -16,6 +16,22 @@ Download the app
 ====
 
 Though the webapp can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.
+
+Make sure you have installed [pip](https://pypi.org/project/pip/).
+
+After cloning or downloading the repository, run the following command at the repository's root.
+
+```bash
+pip3 install -r requirements.txt
+```
+
+Then, you can run
+
+```bash
+python3 main.py
+```
+
+You can then browse to `http://127.0.0.1:5000` in your browser to view the application.
   
   
   
