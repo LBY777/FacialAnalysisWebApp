@@ -16,6 +16,22 @@ Download the app
 ====
 
 Though the webapp can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.
+
+Make sure you have installed [pip](https://pypi.org/project/pip/).
+
+After cloning or downloading the repository, run the following command at the repository's root for all the dependencies.
+
+```bash
+pip3 install -r requirements.txt
+```
+
+Then, you can run
+
+```bash
+python3 main.py
+```
+
+You can then browse to `http://127.0.0.1:5000` in your browser to view the application.
   
   
   
@@ -69,8 +85,6 @@ The process is similarly for both model. Generally, here are the steps:
 4\. Train the candidate models on the training set produced by PCA, with hyperparameter tuned by Grid Search.  
 5\. Model evaluation and selection.  
 6\. Form a pipeline with all the steps above that can be used on both image and video input.  
-  
-Code that generate both models can be found in the Jupyter Notebooks linked in the **Code dropdown button at the top**. All codes related to this project can be found in the GiuHub Repository, which can be accessed through the **"about"** page at the top.
 
   
   
@@ -79,4 +93,3 @@ Code that generate both models can be found in the Jupyter Notebooks linked in t
   
 
 * * *
-s
