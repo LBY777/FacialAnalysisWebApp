@@ -15,7 +15,7 @@ Facial Analysis Web App
 Download the app
 ====
 
-Though the webapp can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.
+Though the webapp now can be [accessed remotely](https://facial-analysis-webapp.herokuapp.com/), it is still recommended to directly download the app from this repository for better experience on Video and Camera features.
 
 Make sure you have installed [python](https://www.python.org/downloads/) and [pip](https://pypi.org/project/pip/).
 
