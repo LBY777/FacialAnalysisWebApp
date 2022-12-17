@@ -19,7 +19,7 @@ Though the webapp can be [accessed remotely](https://facial-analysis-webapp.hero
 
 Make sure you have installed [pip](https://pypi.org/project/pip/).
 
-After cloning or downloading the repository, run the following command at the repository's root.
+After cloning or downloading the repository, run the following command at the repository's root for all the dependencies.
 
 ```bash
 pip3 install -r requirements.txt
