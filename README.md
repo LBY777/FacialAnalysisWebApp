@@ -32,9 +32,27 @@ python3 main.py
 ```
 
 You can then browse to `http://127.0.0.1:5000` in your browser to view the application.
+
+
+
+* * *
+
   
   
+
+Sample Output
+====
+
+Here is a sample output if the input is a **video**.
+<br>
   
+  
+  ![](/static/images/home.gif)
+  
+  
+Here is a sample output if the input is a **image**.
+
+  <img src="/static/prediction/sample_pred.png" alt="drawing" width="600"/>
 
 * * *
 
@@ -61,7 +79,6 @@ Model
 
 The gender prediction uses Support Vector Machine model, which reaches 83.9% accuracy and 83.8% AUC on the test set, outperforming the other candidate models -- Random Forest and Logistic Regression. The emotion prediction uses a Voting Classifier that combines Support Vector Machine, Random Forest Classifier, Logistic Regression and K Neighber Classifier, and reaches 51.9% accuracy on the test set. Principle Component Analysis is used on both prediction tasks.
 
-  
   
   
   
